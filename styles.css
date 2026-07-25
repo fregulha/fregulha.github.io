@@ -310,6 +310,318 @@ details p { margin: 0 0 18px; color: var(--muted); font-size: .84rem; }
   .footer p { order: 3; }
   .whatsapp-float { right: 15px; bottom: 15px; width: 54px; height: 54px; }
 }
+
+
+/* Ajustes de responsividade para celulares: hero mais compacto e foto menos ampliada */
+@media (max-width: 660px) {
+  body { overflow-x: hidden; }
+
+  .hero {
+    padding-top: 94px;
+    padding-bottom: 34px;
+    gap: 26px;
+  }
+
+  .hero-copy { min-width: 0; }
+
+  .eyebrow {
+    margin-bottom: 8px;
+    font-size: .64rem;
+    letter-spacing: .2em;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.85rem, 14.5vw, 3.65rem);
+    line-height: .84;
+    letter-spacing: -.035em;
+  }
+
+  .hero h1 strong { margin-top: 9px; }
+
+  .role {
+    gap: 10px;
+    margin: 18px 0;
+    font-size: .66rem;
+    letter-spacing: .22em;
+  }
+
+  .role::after { width: 68px; }
+
+  .hero-description {
+    font-size: .93rem;
+    line-height: 1.65;
+  }
+
+  .hero-support {
+    font-size: .84rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions { margin: 22px 0; }
+
+  .hero-highlights {
+    margin-top: 23px;
+    padding-top: 16px;
+  }
+
+  .hero-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: auto;
+    width: 100%;
+    padding: 4px 0 8px;
+  }
+
+  .portrait-shell {
+    width: min(76vw, 288px);
+    max-width: none;
+  }
+
+  .portrait-frame {
+    aspect-ratio: 1 / 1.08;
+    border-radius: 21px 21px 58px 21px;
+  }
+
+  .portrait-frame::before {
+    inset: 7px;
+    border-radius: 15px 15px 52px 15px;
+  }
+
+  .portrait-frame img {
+    object-position: center 34%;
+    transform: scale(1);
+  }
+
+  .portrait-monogram {
+    right: 20px;
+    bottom: 39px;
+    font-size: 3.35rem;
+  }
+
+  .orbit-one {
+    width: 320px;
+    height: 320px;
+    top: -15px;
+    left: -36px;
+  }
+
+  .orbit-two {
+    width: 270px;
+    height: 270px;
+    right: -20px;
+    bottom: -24px;
+  }
+
+  .profile-chip {
+    bottom: -18px;
+    padding: 11px 13px;
+    gap: 9px;
+  }
+
+  .profile-chip strong { font-size: .73rem; }
+  .profile-chip small { font-size: .58rem; }
+
+  .social-rail {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 37px;
+  }
+
+  .social-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .social-button:hover { transform: translateY(-3px); }
+}
+
+@media (max-width: 380px) {
+  .section { width: min(100% - 22px, 1180px); }
+  .hero h1 { font-size: clamp(2.55rem, 14vw, 3.1rem); }
+  .portrait-shell { width: min(74vw, 264px); }
+  .role { letter-spacing: .17em; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Correção mobile v3: elimina rolagem horizontal e organiza os destaques */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  position: relative;
+}
+
+main,
+.header,
+.footer,
+.section,
+.hero,
+.hero-copy,
+.hero-media,
+.portrait-shell,
+.authority,
+.services-grid,
+.projects-grid,
+.tech-grid,
+.process-grid,
+.faq-contact {
+  min-width: 0;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 660px) {
+  .header {
+    left: 9px;
+    right: 9px;
+    transform: none;
+    width: auto;
+    max-width: calc(100vw - 18px);
+  }
+
+  .section {
+    width: auto;
+    max-width: calc(100vw - 28px);
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .hero-copy,
+  .hero-media,
+  .hero-actions,
+  .hero-highlights,
+  .authority-grid,
+  .projects-grid,
+  .services-grid,
+  .process-grid,
+  .faq-contact {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero h1,
+  .hero-description,
+  .hero-support,
+  .role {
+    max-width: 100%;
+  }
+
+  .hero-highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .hero-highlights div {
+    display: flex !important;
+    grid-template-columns: none !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(234, 199, 126, .10);
+  }
+
+  .hero-highlights div:last-child {
+    border-bottom: 0;
+  }
+
+  .hero-highlights strong {
+    flex: 0 1 46%;
+    min-width: 0;
+    font-size: 1.05rem;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-highlights span {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    text-align: right;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-media {
+    overflow: hidden;
+  }
+
+  .portrait-shell {
+    max-width: calc(100vw - 72px);
+  }
+
+  .gold-orbit {
+    max-width: 115vw;
+    max-height: 115vw;
+  }
+
+  .social-rail {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-chip {
+    max-width: calc(100vw - 52px);
+  }
+
+  .profile-chip div {
+    min-width: 0;
+  }
+
+  .profile-chip small {
+    white-space: normal;
+  }
+
+  .authority,
+  .contact-card,
+  .service-card,
+  .project-card,
+  .tech-grid,
+  .faq {
+    max-width: 100%;
+  }
+
+  .whatsapp-float {
+    right: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-highlights div {
+    gap: 12px;
+  }
+
+  .hero-highlights strong {
+    flex-basis: 48%;
+    font-size: .98rem;
+  }
+
+  .hero-highlights span {
+    font-size: .69rem;
+  }
 }
