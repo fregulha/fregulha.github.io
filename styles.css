@@ -645,3 +645,54 @@ main,
 .api-status { color:#9a8e82; font-size:.64rem; }
 .api-status i { display:inline-block; width:7px; height:7px; margin-right:7px; border-radius:50%; background:#25d366; box-shadow:0 0 10px rgba(37,211,102,.6); }
 @media(max-width:660px){.project-copy .project-actions{flex-direction:column}.project-actions a{width:100%}.project-card .project-copy{min-height:0}}
+
+
+/* Pré-visualizações atualizadas dos projetos */
+.project-preview-image {
+  min-height: 0;
+  padding: 15px;
+}
+.project-shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 0 0 10px 10px;
+  background: #090607;
+}
+.project-shot::after {
+  content: "Abrir projeto ↗";
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 8px 11px;
+  border: 1px solid rgba(245,216,138,.48);
+  border-radius: 999px;
+  color: #fff7e9;
+  background: rgba(8,5,6,.78);
+  backdrop-filter: blur(10px);
+  font-size: .66rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(7px);
+  transition: .25s ease;
+}
+.project-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease, filter .45s ease;
+}
+.project-card:hover .project-shot img {
+  transform: scale(1.025);
+  filter: saturate(1.04) contrast(1.02);
+}
+.project-card:hover .project-shot::after {
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 720px) {
+  .project-preview-image { padding: 10px; }
+  .project-shot::after { display: none; }
+}
